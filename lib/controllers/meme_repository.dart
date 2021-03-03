@@ -18,6 +18,7 @@ class MemeRepository {
     final HttpClientResponse response = await request.close();
     final Uint8List bytes = await consolidateHttpClientResponseBytes(response);
     final String ext = meme.url.split(".").last;
-    await Share.file('', 'maymamy.$ext', bytes, 'image/jpg');
+    await Share.file(
+        '', '${meme.title.replaceAll(" ", "_")}.$ext', bytes, 'image/jpg');
   }
 }

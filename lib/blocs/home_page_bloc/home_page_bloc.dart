@@ -34,7 +34,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     if (event is Loading) {
       yield LoadingImage(event.message);
     }
-    // TODO: implement mapEventToState
   }
 
   _shareMeme(Meme meme) async {
