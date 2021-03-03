@@ -13,14 +13,20 @@
 <p>maymay is an open source flutter app made to spawn random memes from reddit and have the user scroll through them as if a social media app but purely for memes.
 </p>
 
-#### resources
-
-<a href="https://github.com/D3vd">D3vd's</a> - Meme_Api
-
 </p>
-##### The architecture used : 
-- BLoC 
-- MVC
+<h2> The architecture used : </h2>
+<ul>
+<li>
+ BLoC
+</li>
+
+<li>
+MVC
+</li>
+</ul>
+<H4>Resources</H4>
+
+<a href="https://github.com/D3vd">D3vd</a> 's - <a href="https://github.com/D3vd/Meme_Api">Meme_Api</a>
 
 #### Installation
 
@@ -32,8 +38,9 @@
   ```
 
   and then you'll be good to go 👍
-  <br>
-  if you're using it for android set the target version like below in the build.gradle file
+
+<br>
+if you're using it for android, set the target version like below in the build.gradle file or ...   greater than 24
 
 ```
    minSdkVersion 24
