@@ -1,16 +1,27 @@
-# maymay
 
-A new Flutter project.
+#  maymay
 
-## Getting Started
+maymay is a flutter app made to consume [D3vd](https://github.com/D3vd)'s [Meme_Api](https://github.com/D3vd/Meme_Api)
 
-This project is a starting point for a Flutter application.
+##### The architecture is based on
+- BLoC 
+- MVC
+<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="40%">
+<br>
 
-A few resources to get you started if this is your first Flutter project:
+#### installation
+ - run these commands to install this project
+ 
+    ```
+    flutter pub get
+    flutter install
+    ```
+    and then you'll be good to go 👍
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<br>
+<br>
+<br>
+<br>
+if you have any issues, please feel free to open a PR
