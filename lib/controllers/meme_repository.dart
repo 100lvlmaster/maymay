@@ -9,7 +9,7 @@ import 'package:maymay/models/meme_model.dart';
 class MemeRepository {
   static final Dio _dio = Dio();
   Future<MemeModel> fetchMemes() async {
-    final Response response = await _dio.get(Const.apiUrl + "/10");
+    final Response response = await _dio.get(Const.apiUrl + "/5");
     return MemeModel.fromJson(response.data);
   }
 

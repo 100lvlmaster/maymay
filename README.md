@@ -40,10 +40,10 @@ MVC
   and then you'll be good to go 👍
 
 <br>
-if you're using it for android, set the target version like below in the build.gradle file or ...   greater than 24
+If you're using it for android, set the target version like below in the build.gradle file or ...   greater than 24
 
 ```
    minSdkVersion 24
 ```
 
-if you have any issues, please feel free to open a PR
+If you have any issues, please feel free to open a PR

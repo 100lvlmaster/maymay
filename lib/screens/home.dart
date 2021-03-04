@@ -53,7 +53,8 @@ class _HomePageState extends State<HomePage> {
                   return Center(child: CircularProgressIndicator());
                 }
                 if (state is RenderMemes) {
-                  return _buildMemesList(state.memes);
+                  print(state.showLoader);
+                  return _buildMemesList(state.memes, state.showLoader);
                 }
                 return Container();
               },
@@ -69,14 +70,21 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container _buildMemesList(MemeModel memes) {
+  Container _buildMemesList(MemeModel memes, bool showLoader) {
     return Container(
       color: Colors.black,
       child: ListView.builder(
         shrinkWrap: true,
         controller: _scrollController,
-        itemCount: memes.memes.length,
-        itemBuilder: (context, i) => _buildMemeTile(memes, i),
+        itemCount: showLoader ? memes.memes.length + 1 : memes.memes.length,
+        itemBuilder: (context, i) {
+          if (showLoader && i == memes.memes.length) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return _buildMemeTile(memes, i);
+        },
       ),
     );
   }
@@ -127,12 +135,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showLoader(BuildContext context, String msg) {
-    final SnackBar snackBar = SnackBar(
-      content: Text(msg),
-    );
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
+  // _showLoader(BuildContext context, String msg) {
+  //   final SnackBar snackBar = SnackBar(
+  //     content: Text(msg),
+  //   );
+  //   Scaffold.of(context).showSnackBar(snackBar);
+  // }
 
   _pushToPreview(Meme meme) => Navigator.push(
       context, MaterialPageRoute(builder: (_) => MemePreview(meme)));

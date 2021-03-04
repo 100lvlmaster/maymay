@@ -17,15 +17,18 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   ) async* {
     if (event is FetchMemes) {
       final MemeModel meme = await MemeRepository().fetchMemes();
-      yield RenderMemes(meme);
+      yield RenderMemes(meme, false);
     }
     if (event is FetchMoreMemes) {
-      final List<Meme> memes = (await MemeRepository().fetchMemes()).memes;
       if (state is RenderMemes) {
-        final RenderMemes result = state;
-        result.memes.memes.addAll(memes);
-        print("yes");
-        yield RenderMemes(result.memes);
+        RenderMemes result = state;
+        if (!result.showLoader) {
+          print("howloader");
+          yield RenderMemes(result.memes, true);
+          // final List<Meme> memes = (await MemeRepository().fetchMemes()).memes;
+          // result.memes.memes.addAll(memes);
+          // yield RenderMemes(result.memes, false);
+        }
       }
     }
     if (event is ShareMeme) {

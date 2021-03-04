@@ -11,10 +11,16 @@ class HomePageInitial extends HomePageState {}
 
 class RenderMemes extends HomePageState {
   final MemeModel memes;
-  const RenderMemes(this.memes);
+  final bool showLoader;
+  const RenderMemes(this.memes, this.showLoader);
 }
 
 class LoadingImage extends HomePageState {
   final String message;
   const LoadingImage(this.message);
+}
+
+class AppendLoader extends HomePageState {
+  final MemeModel memes;
+  const AppendLoader(this.memes);
 }

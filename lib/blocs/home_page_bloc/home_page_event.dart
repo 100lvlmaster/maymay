@@ -20,3 +20,8 @@ class Loading extends HomePageEvent {
   final String message;
   const Loading(this.message);
 }
+
+class LoadMoreMemes extends HomePageEvent {
+  final MemeModel memes;
+  const LoadMoreMemes(this.memes);
+}
