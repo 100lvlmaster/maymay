@@ -53,9 +53,12 @@ class _HomePageState extends State<HomePage> {
                   return Center(child: CircularProgressIndicator());
                 }
                 if (state is RenderMemes) {
-                  print(state.showLoader);
-                  return _buildMemesList(state.memes, state.showLoader);
+                  return _buildMemesList(state.memes, false);
                 }
+                if (state is AppendLoader) {
+                  return _buildMemesList(state.memes, true);
+                }
+
                 return Container();
               },
             ),
@@ -79,8 +82,9 @@ class _HomePageState extends State<HomePage> {
         itemCount: showLoader ? memes.memes.length + 1 : memes.memes.length,
         itemBuilder: (context, i) {
           if (showLoader && i == memes.memes.length) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: Center(child: CircularProgressIndicator()),
             );
           }
           return _buildMemeTile(memes, i);
@@ -115,7 +119,17 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        memes.memes[i].title ?? "",
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
                   Spacer(),
                   IconButton(
                     icon: Icon(Icons.download_rounded),

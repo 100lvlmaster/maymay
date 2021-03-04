@@ -11,8 +11,7 @@ class HomePageInitial extends HomePageState {}
 
 class RenderMemes extends HomePageState {
   final MemeModel memes;
-  final bool showLoader;
-  const RenderMemes(this.memes, this.showLoader);
+  const RenderMemes(this.memes);
 }
 
 class LoadingImage extends HomePageState {

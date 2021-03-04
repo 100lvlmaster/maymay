@@ -15,25 +15,27 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   Stream<HomePageState> mapEventToState(
     HomePageEvent event,
   ) async* {
+    // First fetch
     if (event is FetchMemes) {
       final MemeModel meme = await MemeRepository().fetchMemes();
-      yield RenderMemes(meme, false);
+      yield RenderMemes(meme);
     }
-    if (event is FetchMoreMemes) {
-      if (state is RenderMemes) {
-        RenderMemes result = state;
-        if (!result.showLoader) {
-          print("howloader");
-          yield RenderMemes(result.memes, true);
-          // final List<Meme> memes = (await MemeRepository().fetchMemes()).memes;
-          // result.memes.memes.addAll(memes);
-          // yield RenderMemes(result.memes, false);
-        }
-      }
+    // Append Loader and fetch more
+    if (event is FetchMoreMemes && state is RenderMemes) {
+      RenderMemes result = state;
+      yield AppendLoader(result.memes);
     }
+    //
+    if (event is FetchMoreMemes && state is AppendLoader) {
+      AppendLoader result = state;
+      result.memes.memes.addAll((await MemeRepository().fetchMemes()).memes);
+      yield RenderMemes(result.memes);
+    }
+    //
     if (event is ShareMeme) {
       _shareMeme(event.meme);
     }
+    //
     if (event is Loading) {
       yield LoadingImage(event.message);
     }
