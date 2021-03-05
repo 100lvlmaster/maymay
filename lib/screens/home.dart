@@ -130,7 +130,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Spacer(),
                   IconButton(
                     icon: Icon(Icons.download_rounded),
                     onPressed: () {},
