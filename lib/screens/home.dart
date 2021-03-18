@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
     _scrollListener();
   }
 
+  /// Listen for end of list
   _scrollListener() {
     _scrollController.addListener(() {
       if (_scrollController.offset ==
@@ -63,11 +64,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          // BlocListener(
-          //   listenWhen: (prev, curr) => curr is LoadingImage,
-          //   listener: (context, state) => _showLoader(context, state.message),
-          //   child: Container(),
-          // ),
         ],
       ),
     );
