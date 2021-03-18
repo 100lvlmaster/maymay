@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maymay/blocs/home_page_bloc/home_page_bloc.dart';
 import 'package:maymay/models/meme_model.dart';
 import 'package:maymay/screens/meme_preview.dart';
+import 'package:maymay/widgets/blurry_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -42,29 +45,53 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: BlocBuilder<HomePageBloc, HomePageState>(
-              buildWhen: (prev, curr) => curr is! LoadingImage,
-              builder: (context, state) {
-                if (state is HomePageInitial) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (state is RenderMemes) {
-                  return _buildMemesList(state.memes, false);
-                }
-                if (state is AppendLoader) {
-                  return _buildMemesList(state.memes, true);
-                }
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: BlocBuilder<HomePageBloc, HomePageState>(
+                    buildWhen: (prev, curr) => curr is! LoadingImage,
+                    builder: (context, state) {
+                      if (state is HomePageInitial) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      if (state is RenderMemes) {
+                        return _buildMemesList(state.memes, false);
+                      }
+                      if (state is AppendLoader) {
+                        return _buildMemesList(state.memes, true);
+                      }
 
-                return Container();
-              },
+                      return Container();
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.topCenter,
+              child: BlurryContainer(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Spacer(),
+                    IconButton(
+                      iconSize: 30,
+                      color: Colors.blue,
+                      onPressed: () {},
+                      icon: Icon(Icons.celebration),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
