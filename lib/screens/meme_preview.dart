@@ -8,20 +8,21 @@ class MemePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.black,
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(),
-            Align(
-              alignment: Alignment.center,
-              child: Hero(
-                tag: meme.url,
-                child: CachedNetworkImage(
-                  imageUrl: meme.url,
+            SizedBox(height: 30),
+            Expanded(
+              child: Align(
+                alignment: Alignment.center,
+                child: Hero(
+                  tag: meme.url,
+                  child: CachedNetworkImage(
+                    imageUrl: meme.url,
+                  ),
                 ),
               ),
             ),
