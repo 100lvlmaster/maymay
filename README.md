@@ -1,30 +1,29 @@
-<p align="center">
 <img src="/assets/icon/logo.png" height="10%" width="30%">
-</p>
 
-<br>
-<br>
+<br/>
+<br/>
 
-<p align="center">
-<h2>maymay</h2>
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="40%">
-</p>
+# Maymay
 
-<p>maymay is an open source flutter app made to spawn random memes from reddit and have the user scroll through them as if a social media app but purely for memes.
-</p>
+![alt flutter](https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png)
 
-</p>
-<h2> The architecture used : </h2>
-<ul>
-<li>
- BLoC
-</li>
+---
 
-<li>
-MVC
-</li>
-</ul>
-<H4>Resources</H4>
+Maymay is an open source flutter app made to spawn random memes from reddit and have the user scroll through them as if a social media app but purely for memes.
+
+## Features
+
+- Infinite scroll
+- Share memes
+- Share 10 randoms on any supported platforms
+
+## The architecture used :
+
+- BLoC
+- MVC
+-
+
+### Resources
 
 <a href="https://github.com/D3vd">D3vd</a> 's - <a href="https://github.com/D3vd/Meme_Api">Meme_Api</a>
 
