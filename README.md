@@ -21,7 +21,6 @@ Maymay is an open source flutter app made to spawn random memes from reddit and 
 
 - BLoC
 - MVC
--
 
 ### Resources
 
