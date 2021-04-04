@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:maymay/controllers/meme_repository.dart';
@@ -36,9 +35,29 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       _shareMeme(event.meme);
     }
     //
-    if (event is Loading) {
-      yield LoadingImage(event.message);
+    if (event is DownloadMemeEvent) {
+      yield DownloadingMeme('Download meme, please wait');
+      final bool result = await _downloadMeme(event.meme);
+      //
+      if (result) {
+        yield DownloadResultState(result, 'Meme was downloaded successfully');
+      } else {
+        yield DownloadResultState(
+            result, 'Could not download meme, please try again later');
+      }
     }
+    //
+    if (event is MemeBomb) {
+      yield LoadingState('Fetching meme, please wait');
+      final result = await MemeRepository().getMemes();
+      yield RemoveLoaderState();
+      await MemeRepository().shareMemes(result);
+    }
+  }
+
+  Future<bool> _downloadMeme(Meme meme) async {
+    await MemeRepository().downloadMeme(meme);
+    return true;
   }
 
   _shareMeme(Meme meme) async {

@@ -16,6 +16,15 @@ class ShareMeme extends HomePageEvent {
   const ShareMeme(this.meme);
 }
 
+class DownloadMemeEvent extends HomePageEvent {
+  final Meme meme;
+  const DownloadMemeEvent(this.meme);
+}
+
+class MemeBomb extends HomePageEvent {
+  const MemeBomb();
+}
+
 class Loading extends HomePageEvent {
   final String message;
   const Loading(this.message);
