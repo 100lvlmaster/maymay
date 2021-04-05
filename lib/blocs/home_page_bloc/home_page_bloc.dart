@@ -8,6 +8,7 @@ part 'home_page_event.dart';
 part 'home_page_state.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
+  static MemeModel cacheMemes = MemeModel();
   HomePageBloc() : super(HomePageInitial());
 
   @override
@@ -16,19 +17,14 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   ) async* {
     // First fetch
     if (event is FetchMemes) {
-      final MemeModel meme = await MemeRepository().fetchMemes();
-      yield RenderMemes(meme);
+      cacheMemes = await MemeRepository().fetchMemes();
+      yield RenderMemes(cacheMemes);
     }
     // Append Loader and fetch more
-    if (event is FetchMoreMemes && state is RenderMemes) {
-      RenderMemes result = state;
-      yield AppendLoader(result.memes);
-    }
-    //
-    if (event is FetchMoreMemes && state is AppendLoader) {
-      AppendLoader result = state;
-      result.memes.memes.addAll((await MemeRepository().fetchMemes()).memes);
-      yield RenderMemes(result.memes);
+    if (event is FetchMoreMemes) {
+      yield AppendLoader(cacheMemes);
+      cacheMemes.memes.addAll((await MemeRepository().fetchMemes()).memes);
+      yield RenderMemes(cacheMemes);
     }
     //
     if (event is ShareMeme) {
