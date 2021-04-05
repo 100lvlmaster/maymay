@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maymay/blocs/home_page_bloc/home_page_bloc.dart';
 import 'package:maymay/models/meme_model.dart';
 import 'package:maymay/screens/meme_preview.dart';
-
-import '../blocs/home_page_bloc/home_page_bloc.dart';
 import '../blocs/home_page_bloc/home_page_bloc.dart';
 
 class HomePage extends StatefulWidget {

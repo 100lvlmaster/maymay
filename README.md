@@ -1,13 +1,15 @@
-<img src="/assets/icon/logo.png" height="10%" width="30%">
-
+![maymay_logo](/android/app/src/main/res/mipmap-xxhdpi/launcher_icon.png)
 <br/>
 <br/>
 
 # Maymay
 
-![alt flutter](https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png)
-
 ---
+
+![flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![ios](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+![dart](https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white)
 
 Maymay is an open source flutter app made to spawn random memes from reddit and have the user scroll through them as if a social media app but purely for memes.
 

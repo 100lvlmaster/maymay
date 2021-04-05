@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
