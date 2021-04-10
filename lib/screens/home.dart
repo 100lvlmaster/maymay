@@ -45,20 +45,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          centerTitle: true,
-          title: Text('maymay'),
-          actions: [
-            IconButton(
-              icon: Text(
-                'x10',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-              onPressed: () => _homePageBloc.add(MemeBomb()),
-            )
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.black,
+        //   centerTitle: true,
+        //   title: Text('maymay'),
+        //   actions: [
+        //     IconButton(
+        //       icon: Text(
+        //         'x10',
+        //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        //       ),
+        //       onPressed: () => _homePageBloc.add(MemeBomb()),
+        //     )
+        //   ],
+        // ),
         extendBodyBehindAppBar: true,
         body: BlocConsumer<HomePageBloc, HomePageState>(
           /// Listeners
@@ -134,25 +134,49 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  Container _buildMemesList(MemeModel memes, bool showLoader) {
-    return Container(
-      color: Colors.black,
-      child: ListView.builder(
-        shrinkWrap: true,
-        controller: _scrollController,
-        itemCount: showLoader ? memes.memes.length + 1 : memes.memes.length,
-        itemBuilder: (context, i) {
-          if (showLoader && i == memes.memes.length) {
-            return Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-          return _buildMemeTile(memes, i);
-        },
-      ),
+  Widget _buildMemesList(MemeModel memes, bool showLoader) {
+    return CustomScrollView(
+      controller: _scrollController,
+      shrinkWrap: true,
+      slivers: [
+        SliverAppBar(
+          backgroundColor: Colors.black,
+          snap: true,
+          centerTitle: true,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(),
+              Text('maymay'),
+              IconButton(
+                icon: Text(
+                  'x10',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                ),
+                onPressed: () => _homePageBloc.add(MemeBomb()),
+              )
+            ],
+          ),
+          floating: true,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, i) {
+              if (showLoader && i == memes.memes.length) {
+                return Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return _buildMemeTile(memes, i);
+            },
+            childCount:
+                showLoader ? memes.memes.length + 1 : memes.memes.length,
+          ),
+        ),
+      ],
     );
   }
 
